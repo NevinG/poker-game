@@ -160,7 +160,7 @@ function App() {
 
   function connect() {
     return new Promise(function(resolve, reject) {
-      ws = new WebSocket('ws://nevin-gilday-poker-server.herokuapp.com/ws');
+      ws = new WebSocket('wss://nevin-gilday-poker-server.herokuapp.com/ws');
         ws.onopen = function() {
             resolve();
         };
