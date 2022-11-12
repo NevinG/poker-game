@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/poker-game/static/css/main.a76f6fa0.css",
-    "main.js": "/poker-game/static/js/main.7806e26d.js",
+    "main.js": "/poker-game/static/js/main.7237a251.js",
     "static/js/787.01f84548.chunk.js": "/poker-game/static/js/787.01f84548.chunk.js",
     "static/media/heartIcon.png": "/poker-game/static/media/heartIcon.33c1f1bce324cd38e6fe.png",
     "static/media/clubIcon.png": "/poker-game/static/media/clubIcon.ae09d96558a41c8f46ad.png",
     "static/media/spadeIcon.png": "/poker-game/static/media/spadeIcon.6c8858181db2c9ce3c64.png",
     "index.html": "/poker-game/index.html",
     "main.a76f6fa0.css.map": "/poker-game/static/css/main.a76f6fa0.css.map",
-    "main.7806e26d.js.map": "/poker-game/static/js/main.7806e26d.js.map",
+    "main.7237a251.js.map": "/poker-game/static/js/main.7237a251.js.map",
     "787.01f84548.chunk.js.map": "/poker-game/static/js/787.01f84548.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a76f6fa0.css",
-    "static/js/main.7806e26d.js"
+    "static/js/main.7237a251.js"
   ]
 }
