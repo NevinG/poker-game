@@ -165,8 +165,8 @@ function App() {
   function connect() {
     return new Promise(function(resolve, reject) {
       //for heroku server wss://nevin-gilday-poker-server.herokuapp.com/ws
-      //for local testing wss://localhost:7000
-      ws = new WebSocket('ws://localhost:7000/ws');
+      //for local testing wss://localhost:7000/ws
+      ws = new WebSocket('wss://nevin-gilday-poker-server.herokuapp.com/ws');
         ws.onopen = function() {
             resolve();
         };
