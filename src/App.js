@@ -22,8 +22,9 @@ function App() {
   const [smallBlind, setSmallBlind] = useState(false);
   const [bigBlind, setBigBlind] = useState(false);
   const [votedToStart, setVotedToStart] = useState(false);
-  const [raiseAmount, setRaiseAmount] = useState(0);
+  const [raiseAmount, setRaiseAmount] = useState("");
   const [winner, setWinner] = useState(false);
+  const [winningHand, setWinningHand] = useState("");
 
   const [lobbyId, setLobbyId] = useState("");
 
@@ -61,7 +62,7 @@ function App() {
 
         <div style={{width: "250px", backgroundColor: winner && "lightyellow",borderBottom: yourTurn ? "5px solid yellow" : "", margin: "10px auto"}}>
           <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-          <h4 style={{margin: "2px", textAlign: "center"}}>${yourBet}</h4>
+          <h4 style={{margin: "2px", textAlign: "center"}}>{winningHand ? winningHand : '$' + yourBet}</h4>
             {bigBlind && <img src={require('./images/bigBlindToken.png')} width={25} height={25} alt='suit' style={{margin: "5px"}}></img>}
             {smallBlind && <img src={require('./images/smallBlindToken.png')} width={25} height={25} alt='suit' style={{margin: "5px"}}></img>}
           </div>
@@ -76,16 +77,16 @@ function App() {
           <h3 style={{textAlign: "center", margin: "5px"}}>${yourMoney}</h3>
         </div>
 
-        <div style={{width: "390px", margin: "auto"}}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
           {started?
             <div hidden={folded}>
               <button disabled={folded} onClick={fold}>Fold</button>
-              <button onClick={()=> {makeBet(bet)}}>Check/Call</button>
+              <button onClick={()=> {makeBet(bet)}}>{`Check/Call ($${bet})`}</button>
               <button onClick={()=> {makeBet(raiseAmount)}}>Raise</button>
-              <input style={{width: "70px"}} type="number" data={raiseAmount} onChange={(e)=>changeRaiseAmount(e)}></input>
+              <input style={{width: "70px"}} type="number" value={raiseAmount} onChange={(e)=>changeRaiseAmount(e)}></input>
             </div>
           :
-            (otherPlayers.length > 1) ?
+            (otherPlayers.length > 0) ?
               <button onClick={startGame} style={{display: votedToStart ? "none" : "block", margin: "auto"}}>Start Game</button>
               :
               <h1 style={{textAlign: "center"}}>Waiting for players...</h1>
@@ -126,6 +127,8 @@ function App() {
   }
   
   function makeBet(betAmount){
+    setRaiseAmount("");
+
     ws.send(JSON.stringify({bet: true, betAmount: betAmount, lobbyId: lobbyId}))
   }
   
@@ -151,7 +154,8 @@ function App() {
         setSmallBlind(messageBody.smallBlind);
         setVotedToStart(messageBody.votedToStart);
         setWinner(messageBody.winner);
-        
+        setWinningHand(messageBody.winningHand);
+
         setLobbyId(messageBody.lobbyId);
         setJoinedLobby(messageBody.lobbyId !== undefined);
       };
@@ -160,7 +164,9 @@ function App() {
 
   function connect() {
     return new Promise(function(resolve, reject) {
-      ws = new WebSocket('wss://nevin-gilday-poker-server.herokuapp.com/ws');
+      //for heroku server wss://nevin-gilday-poker-server.herokuapp.com/ws
+      //for local testing wss://localhost:7000
+      ws = new WebSocket('ws://localhost:7000/ws');
         ws.onopen = function() {
             resolve();
         };

@@ -43,7 +43,7 @@ export function Card(props){
             {
             !props.blank 
             ?
-            <div style={{width: props.width, height: props.height, border: "2px solid black", borderRadius: props.width / 8, margin: "5px", display:"flex", flexDirection: "column"}}>
+            <div style={{width: props.width, backgroundColor: "white",  height: props.height, border: "2px solid black", borderRadius: props.width / 8, margin: "5px", display:"flex", flexDirection: "column"}}>
                 <p style={{textAlign: "left", margin: 0, marginLeft: 5, fontSize: props.width / 3}}>{numberMap[props.number]}</p>
                 <img src={suitPath} width={props.width / 2} height={props.width / 2} alt='suit' style={{margin: "auto"}}></img>
                 <p style={{textAlign: "right", margin: 0, marginRight: 5, fontSize: props.width / 3}}>{numberMap[props.number]}</p>
